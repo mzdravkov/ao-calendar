@@ -14,6 +14,7 @@ gem 'figaro'
 gem 'mysql2'
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
+gem 'acts_as_commentable'
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end
