@@ -1,0 +1,9 @@
+<%= form_for @new_task, url: tasks_path, action: :create do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= hidden_field_tag :event_id, @event.id %>
+
+  <%= f.submit %>
+<% end %>

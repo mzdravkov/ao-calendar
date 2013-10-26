@@ -1,4 +1,4 @@
-<div class="hero-unit">
+<div class="well">
   <h2><%= @event.title %></h2>
   <hr style="border-color: black" >
   <p>
@@ -8,3 +8,10 @@
     From <%= @event.from.strftime("%H:%M %d/%m/%y") %> to <%= @event.to.strftime("%H:%M %d/%m/%y") %>
   </p>
 </div>
+<% @tasks.each do |task| %>
+  <div class="well">
+    <h4><%= task.title %></h4>
+    <small><%= task.description %></small>
+  </div>
+<% end %>
+<%= render 'tasks/new' %>

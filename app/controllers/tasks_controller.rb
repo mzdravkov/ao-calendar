@@ -13,7 +13,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    Task.create(task_params)
+    event = Event.find(params['event_id'])
+    event.tasks << Task.create(task_params)
   end
 
   def edit
