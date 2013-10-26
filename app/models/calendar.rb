@@ -7,4 +7,5 @@ class Calendar < ActiveRecord::Base
 
   has_many :super_inheritances
   has_many :super_calendars, through: :super_inheritances
+  #has_many :sub_inheritances, as: :calendarable
 end
