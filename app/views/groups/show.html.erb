@@ -1,6 +1,8 @@
-<%= button_to 'Join group', action: :join %>
-<% @group.polls.each do |poll| %>
-  <%= poll.title %>
-  <%= button_to 'Accept', controller: 'polls', action: 'vote_for', id: poll.id %>
-  <%= button_to 'Refuse', controller: 'polls', action: 'vote_against', id: poll.id %>
+<%= button_to 'Join group', action: :join unless can_see_group?(@group)%>
+<% if can_see_group? @group %>
+  <% @group.polls.each do |poll| %>
+    <%= poll.title %>
+    <%= button_to 'Accept', controller: 'polls', action: 'vote_for', id: poll.id %>
+    <%= button_to 'Refuse', controller: 'polls', action: 'vote_against', id: poll.id %>
+  <% end %>
 <% end %>

@@ -17,6 +17,7 @@ gem 'simple_form', '>= 3.0.0.rc'
 gem 'acts_as_commentable'
 gem 'watu_table_builder', :require => 'table_builder'
 gem 'thumbs_up'
+gem 'tabs_on_rails'
 
 group :assets do
   gem 'therubyracer', :platform=>:ruby

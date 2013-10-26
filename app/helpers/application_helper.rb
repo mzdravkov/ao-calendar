@@ -12,4 +12,8 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def can_see_group? group
+    return true if current_user.groups.include? group
+    false
+  end
 end

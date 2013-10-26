@@ -18,11 +18,21 @@
       </nav>
     </div>
     <div id="main" role="main">
-      <div class="container">
+      <div class="container-fluid">
         <div class="content">
            <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
+              <% if user_signed_in? %>
+                <div class="navbar navbar-fluid-top">
+                  <%= tabs_tag do |tab| %>
+                    <%= tab.home 'Homepage', root_path %>
+                    <% current_user.groups.each do |group| %>
+                      <%= tab.account group.name, group_path(group) %>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
               <%= yield %>
             </div>
           </div>
