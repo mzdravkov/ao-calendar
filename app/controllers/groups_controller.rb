@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(event_params)
+    group = Group.new(group_params)
     if group.save
       group.users << current_user
       redirect_to root_url, notice: "You have successfuly created the group #{group.name}"

@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  rescue_from ActiveRecord::RecordInvalid do
+    redirect_to request.referer, alert: "You can\'t answer multiple times to polls. THIS. IS. DEMOCRACY!!!"
+  end
+
+
 end
