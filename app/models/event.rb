@@ -3,4 +3,6 @@ class Event < ActiveRecord::Base
   
   belongs_to :calendarable, polymorphic: true
   has_many :tasks
+
+  #attr_accessor :title, :description, :from, :to
 end
