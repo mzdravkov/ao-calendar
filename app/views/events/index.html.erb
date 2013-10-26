@@ -1,2 +1,18 @@
-<h1>Event#index</h1>
-<p>Find me in app/views/event/index.html.erb</p>
+<div id="calendar">
+  <h2 id="month">
+    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y/%m") %>
+    <%=h @date.strftime("%B %Y") %>
+    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y/%m") %>
+  </h2>
+<%= calendar_for @events, :year => @date.year, :month => @date.month do |calendar| %>
+  <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+  <% calendar.day(:day_method => :from) do |date, events| %>
+      <%= date.day %>
+      <ul>
+        <% events.each do |event| %>
+          <li><%= event.title %></li>
+        <% end %>
+      </ul>
+  <% end %>
+<% end %>
+</div>
