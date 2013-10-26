@@ -1,11 +1,7 @@
 class EventsController < ApplicationController
+
   def new
     @event = Event.new
-  end
-
-  def index
-    @events = Event.all
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 
   def show
@@ -13,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    Event.new(event_params).save
+   current_user.events << Event.create(event_params)
   end
 
   def edit
