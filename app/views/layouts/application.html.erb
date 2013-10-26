@@ -23,16 +23,14 @@
            <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
-              <% if user_signed_in? %>
-                <div class="navbar navbar-fluid-top">
-                  <%= tabs_tag do |tab| %>
-                    <%= tab.home 'Homepage', root_path %>
-                    <% current_user.groups.each do |group| %>
-                      <%= tab.account group.name, group_path(group) %>
+                <% if user_signed_in? %>
+                  <ul class="nav nav-tabs">
+                    <li><%= link_to 'Personal', root_path %></li>
+                    <%current_user.groups.each do |group| %>
+                      <li><%= link_to group.name, group_path(group) %></li>
                     <% end %>
-                  <% end %>
-                </div>
-              <% end %>
+                  </ul>
+                <% end %>
               <%= yield %>
             </div>
           </div>
