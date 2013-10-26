@@ -9,6 +9,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @comments = @task.comments.recent.limit(10).all
   end
 
   def create
@@ -21,7 +22,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
     if @task.update_attributes(task_params)
       redirect_to :action => 'show', :id => @task
     else
