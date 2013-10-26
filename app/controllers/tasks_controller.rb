@@ -13,8 +13,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    @task.save
+    Task.create(task_params)
   end
 
   def edit
@@ -22,10 +21,10 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update_attributes(task_params)
-      redirect_to :action => 'show', :id => @task
+    if task.update_attributes(task_params)
+      redirect_to :action => 'show', :id => task
     else
-      @tasks = Task.find(:all)
+      tasks = Task.find(:all)
       render :action => 'edit'
     end
   end

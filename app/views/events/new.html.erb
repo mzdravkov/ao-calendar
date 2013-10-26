@@ -4,9 +4,9 @@
   <%= f.label :description, 'Description' %>
   <%= f.text_field :description %>
   <%= f.label :from, 'From' %>
-  <%= f.text_field :from %>
+  <%= f.datetime_select :from %>
   <%= f.label :to, 'To' %>
-  <%= f.text_field :to %>
+  <%= f.datetime_select :to %>
 
   <%= f.submit %>
 <% end %>

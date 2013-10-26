@@ -1,6 +1,10 @@
-<div class="hero-unit"
-  ><h2><%= @event.title %><h2>
+<div class="hero-unit">
+  <h2><%= @event.title %></h2>
+  <hr style="border-color: black" >
   <p>
-   <%= @event.description %>
+    <big><%= @event.description %></big>
+  </p>
+  <p>
+    From <%= @event.from.strftime("%H:%M %d/%m/%y") %> to <%= @event.to.strftime("%H:%M %d/%m/%y") %>
   </p>
 </div>
