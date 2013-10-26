@@ -6,4 +6,12 @@ class Group < ActiveRecord::Base
   def join_user user
     users << user
   end
+
+  def kick_user user
+    users.delete user.id
+  end
+
+  def remove_event event
+    events.delete event.id
+  end
 end
