@@ -28,7 +28,7 @@
                     <li>
                       <div class="btn-group" style="padding-right: 10px;">
                         <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-                          Menu
+                          <i class="icon-list"></i>
                           <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -41,7 +41,7 @@
                         </ul>
                       </div>
                     </li>
-                    <li><%= link_to 'Personal', root_path %></li>
+                    <li><a href="<%= root_path %>"><i class="icon-home icon-white"></i></a></li>
                     <%current_user.groups.each do |group| %>
                       <li><%= link_to group.name, group_path(group) %></li>
                     <% end %>
