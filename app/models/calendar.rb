@@ -3,6 +3,8 @@ class Calendar < ActiveRecord::Base
 
   validates :name, presence: true
 
-  belongs_to :user
-  has_many :events
+  has_many :events, as: :calendarable
+
+  has_many :super_inheritances
+  has_many :super_calendars, through: :super_inheritances
 end
