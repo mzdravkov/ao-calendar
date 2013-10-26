@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     if @event.update_attributes(event_params)
       redirect_to :action => 'show', :id => @event
     else
-      @subjects = Event.find(:all)
+      @events = Event.find(:all)
       render :action => 'edit'
     end
   end
