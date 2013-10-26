@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.find(:all)
+    @events = Event.all
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 
   def show
@@ -12,8 +13,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.save
+    Event.new(event_params).save
   end
 
   def edit
@@ -21,8 +21,8 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
-    if @event.update_attributes(event_params)
+    event = Event.find(params[:id])
+    if event.update_attributes(event_params)
       redirect_to :action => 'show', :id => @event
     else
       @events = Event.find(:all)
