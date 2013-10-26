@@ -1,2 +1,9 @@
-<h1>GroupCalendars#edit</h1>
-<p>Find me in app/views/group_calendars/edit.html.erb</p>
+<%= form_for @group_calendar, method: :create do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

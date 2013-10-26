@@ -4,7 +4,7 @@ class GroupCalendarsController < ApplicationController
   end
 
   def create
-    group_calendar = GroupCalendar.new(params[:group_calendar])
+    group_calendar = GroupCalendar.new(event_params)
     if group_calendar.save
       redirect_to root_url, notice: "You have successfuly created the group calendar #{group_calendar.name}"
     else
@@ -14,14 +14,21 @@ class GroupCalendarsController < ApplicationController
 
   def show
     @group_calendar = GroupCalendar.find(params[:id])
-  en
+  end
 
   def edit
+    @group_calendar = GroupCalendar.find(params[:id])
   end
 
   def update
   end
 
   def destroy
+  end
+
+  private
+
+  def event_params
+    params.fetch(:group_calendar, {}).permit(:name)
   end
 end

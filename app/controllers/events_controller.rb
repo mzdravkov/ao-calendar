@@ -35,7 +35,8 @@ class EventsController < ApplicationController
   end
 
   private
-    def event_params
-      params.fetch(:event, {}).permit(:title, :description, :from, :to)
-    end
+
+  def event_params
+    params.fetch(:event, {}).permit(:title, :description, :from, :to)
+  end
 end
