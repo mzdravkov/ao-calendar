@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :groups
   has_many :events, as: :eventable
+  has_and_belongs_to_many :ignored_events, class_name: 'Event', join_table: :ignored_events_users
 end

@@ -3,6 +3,7 @@ AoCallendar::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
   resources :events, except: :index
+  post 'events/:id/ignore', to: 'events#ignore'
   resources :groups, only: [:index, :show, :new, :create] # TODO: implement index of groups with search bar
   resources :tasks, only: [:create] # TODO: implement destroy of tasks (after vote)
   resources :polls, only: [:new, :create, :update]
