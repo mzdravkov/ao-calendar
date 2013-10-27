@@ -7,7 +7,7 @@
 <%= calendar_for @events, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| %>
   <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
   <% calendar.day(:day_method => :from) do |date, events| %>
-      <%= link_to date.day, '?view=day', :remote => true %>
+      <%= link_to date.day, '?view=day&day='+date.year.to_s+' '+date.month.to_s+' '+date.day.to_s+'', :remote => true %>
       <ul>
         <% events.each do |event| %>
           <li><span><%= event.from.to_datetime.strftime("%H:%M") %></span>
