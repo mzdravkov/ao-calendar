@@ -18,6 +18,7 @@ class EventsController < ApplicationController
     else
       Group.find(params[:eventable_id]).events << event
     end
+    redirect_to root_url, notice: "You have successfuly created the event"
   end
 
   def edit

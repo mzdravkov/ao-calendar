@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   def create
     event = Event.find(params['event_id'])
     event.tasks << Task.create(task_params)
+    redirect_to event_path(event), notice: "You have successfuly created the task"
   end
 
   def edit
