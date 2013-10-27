@@ -39,4 +39,21 @@ class Poll < ActiveRecord::Base
     user = Event.find(subject.to_i)
     group.remove_event(user)
   end
+
+  def self.all_polls
+    {'Remove' => 'remove'}
+  end
+
+  def self.all_poll_names
+    available_polls.values
+  end
+
+  def self.all_poll_effects
+    available_polls.keys
+  end
+
+  def self.all_subjects
+    {'users' => group.users.map { |u| [u.name, u.id] },
+     'event' => group.events.map { |e| [e.title, e.id] }}
+  end
 end
