@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
 
   has_many :tasks
   belongs_to :eventable, polymorphic: true
+  has_and_belongs_to_many :ignorers, join_table: :ignored_events_users, class_name: 'User'
 
   def submit_to_user_or_group user, eventable_id
     if eventable_id.empty?

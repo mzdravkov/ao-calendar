@@ -44,6 +44,11 @@ class EventsController < ApplicationController
     redirect_to root_url, notice: 'You have successfuly deleted an event'
   end
 
+  def ignore
+    current_user.ignored_events << Event.find(params[:id])
+    redirect_to root_url, notice: 'You have successfuly ignored an event'
+  end
+
   private
 
   def event_params

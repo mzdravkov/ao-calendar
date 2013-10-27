@@ -10,9 +10,11 @@
       <%= link_to date.day, '?view=day&day='+date.year.to_s+' '+date.month.to_s+' '+date.day.to_s+'', :remote => true %>
       <ul>
         <% events.each do |event| %>
-          <li><span><%= event.from.to_datetime.strftime("%H:%M") %></span>
-              <%= link_to event.title, event_path(event), :class => "task" %>
-          </li>
+          <% unless event.ignorers.find_by_id current_user %>
+            <li><span><%= event.from.to_datetime.strftime("%H:%M") %></span>
+                <%= link_to event.title, event_path(event), :class => "task" %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
   <% end %>
