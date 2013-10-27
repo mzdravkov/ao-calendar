@@ -1,3 +1,1 @@
-<% if user_signed_in?  %>
-  <%= render 'events/calendar' %>
-<% end  %>
+<%= render 'events/calendar' if user_signed_in? %>

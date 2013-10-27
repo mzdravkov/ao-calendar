@@ -1,12 +1,29 @@
-<%= form_for @event do |f| %>
-  <%= f.label :title, 'Title' %>
-  <%= f.text_field :title %>
-  <%= f.label :description, 'Description' %>
-  <%= f.text_field :description %>
-  <%= f.label :from, 'From' %>
-  <%= f.text_field :from %>
-  <%= f.label :to, 'To' %>
-  <%= f.text_field :to %>
+<%= form_for @event, html: {class: 'form-horizontal'} do |f| %>
+  <div class="control-group">
+    <%= f.label :title, class: 'control-label' %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, class: 'control-label' %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="control-group">
+    <%= f.label :from, class: 'control-label'%>
+    <%= f.datetime_select :from, {}, {class: "datetime-select"} %>
+  </div>
+  <div class="control-group">
+    <%= f.label :to, class: 'control-label' %>
+    <%= f.datetime_select :to, {}, {class: "datetime-select"} %>
+  </div>
+  <div class="control-group">
 
-  <%= f.submit %>
+  <div class="control-group">
+    <%= label_tag 'Submit to', nil, class: 'control-label'%>
+    <%= select_tag :eventable_id, options_from_collection_for_select(current_user.groups, :id, :name), include_blank: true %> <small>leave blank to submit the event to your personal calendar only </small>
+    </div>
+
+    <div class="controls">
+      <%= f.submit nil, class: 'btn' %>
+    </div>
+  </div>
 <% end %>

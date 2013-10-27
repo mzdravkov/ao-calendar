@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(event_params)
+    group = Group.new(group_params)
     if group.save
       group.users << current_user
       redirect_to root_url, notice: "You have successfuly created the group #{group.name}"
@@ -34,6 +34,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @events = @group.events
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 
   def destroy

@@ -6,10 +6,18 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @tasks = @event.tasks
+    @new_task = Task.new
   end
 
   def create
-   current_user.events << Event.create(event_params)
+    event = Event.create(event_params)
+
+    if params[:eventable_id].empty?
+      current_user.events << event
+    else
+      Group.find(params[:eventable_id]).events << event
+    end
   end
 
   def edit
@@ -34,5 +42,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.fetch(:event, {}).permit(:title, :description, :from, :to)
+  end
+
+  def group_from_params
+    names_poluted = params.keys.select { |key| key =~ /.+_group/ }
+    names = names_poluted.map { |g| g.gsub /_group/, '' }
+    names.map { |name| Group.find_by_name(name) }.first
   end
 end
