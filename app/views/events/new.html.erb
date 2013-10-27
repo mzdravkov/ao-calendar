@@ -16,6 +16,14 @@
     <%= f.datetime_select :to, {}, {class: "datetime-select"} %>
   </div>
   <div class="control-group">
+    <%= f.label :repeats, class: 'control-label' %>
+    <%= f.number_field :repeats, value: 0, class: "datetime-select" %>
+  </div>
+  <div class="control-group">
+    <%= f.label :step, class: 'control-label' %>
+    <%= f.number_field :step, value: 0, class: "datetime-select" %>
+  </div>
+  <div class="control-group">
 
   <div class="control-group">
     <%= label_tag 'Submit to', nil, class: 'control-label'%>

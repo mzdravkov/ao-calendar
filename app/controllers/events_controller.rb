@@ -12,13 +12,17 @@ class EventsController < ApplicationController
 
   def create
     event = Event.create(event_params)
-
-    if params[:eventable_id].empty?
-      current_user.events << event
+    if event.valid?
+      if event.repeats > 0
+        event.submit_to_user_or_group current_user, params[:eventable_id]
+        event.repeat
+      else
+        event.submit_to_user_or_group current_user, params[:eventable_id]
+      end
+      redirect_to root_url, notice: "You have successfuly created the event"
     else
-      Group.find(params[:eventable_id]).events << event
+      redirect_to new_event_path, alert: "Invalid data"
     end
-    redirect_to root_url, notice: "You have successfuly created the event"
   end
 
   def edit
@@ -42,7 +46,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.fetch(:event, {}).permit(:title, :description, :from, :to)
+    params.fetch(:event, {}).permit(:title, :description, :from, :to, :repeats, :step)
   end
 
   def group_from_params
