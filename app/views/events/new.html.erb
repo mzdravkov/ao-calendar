@@ -16,16 +16,11 @@
     <%= f.datetime_select :to, {}, {class: "datetime-select"} %>
   </div>
   <div class="control-group">
-    <div class="control-group">
-      <%= label_tag :personal, nil, class: 'control-label' %>
-      <%= check_box_tag :personal %>
+
+  <div class="control-group">
+    <%= label_tag 'Submit to', nil, class: 'control-label'%>
+    <%= select_tag :eventable_id, options_from_collection_for_select(current_user.groups, :id, :name), include_blank: true %> <small>leave blank to submit the event to your personal calendar only </small>
     </div>
-    <% current_user.groups.each do |group| %>
-      <div class="control-group">
-        <%= label_tag "#{group.name}_group", nil, class: 'control-label' %>
-        <%= check_box_tag "#{group.name}_group" %>
-      </div>
-    <% end %><br/>
 
     <div class="controls">
       <%= f.submit nil, class: 'btn' %>

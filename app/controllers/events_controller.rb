@@ -13,11 +13,10 @@ class EventsController < ApplicationController
   def create
     event = Event.create(event_params)
 
-    current_user.events << event if params.keys.include? 'personal'
-    post_to = params.keys.select { |key| key =~ /.+_group/ }
-    post_to.each do |group_name|
-      name = group_name.gsub /_group/, ''
-      Group.find_by_name(name).events << event
+    if params[:eventable_id].empty?
+      current_user.events << event
+    else
+      Group.find(params[:eventable_id]).events << event
     end
   end
 
@@ -43,5 +42,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.fetch(:event, {}).permit(:title, :description, :from, :to)
+  end
+
+  def group_from_params
+    names_poluted = params.keys.select { |key| key =~ /.+_group/ }
+    names = names_poluted.map { |g| g.gsub /_group/, '' }
+    names.map { |name| Group.find_by_name(name) }.first
   end
 end
