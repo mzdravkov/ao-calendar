@@ -1,0 +1,1 @@
+$("#main-calendar-view").html("<%= escape_javascript(%w[calendar day].include?(params[:view]) ? render('events/' + params[:view]) : render("events/calendar")) %>");

@@ -8,6 +8,10 @@ class HomeController < ApplicationController
       end
       @date = params[:month] ? Date.parse(params[:month]) : Date.today
     end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 end
