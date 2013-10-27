@@ -11,7 +11,13 @@ class EventsController < ApplicationController
   end
 
   def create
-   current_user.events << Event.create(event_params)
+    event = Event.create(event_params)
+
+    current_user.events << event if params.keys.include? 'personal'
+    post_to = params.keys.select { |key| key =~ /.+_group/ }
+    post_to.each do |group_name|
+      Group.find_by_name(group_name).events << event
+    end
   end
 
   def edit

@@ -34,6 +34,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @events = @group.events
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 
   def destroy

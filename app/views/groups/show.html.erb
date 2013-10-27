@@ -7,4 +7,5 @@
       <%= button_to 'Refuse', {controller: 'polls', action: 'vote_against', id: poll.id}, {class: "btn"} %>
     </div>
   <% end %>
+  <%= render 'events/calendar' %>
 <% end %>
