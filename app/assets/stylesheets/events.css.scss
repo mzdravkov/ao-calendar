@@ -27,6 +27,7 @@
   height: 65px;
   vertical-align: top;
   font-size: 16px;
+  overflow: hidden;
 }
 
 #calendar td a {
@@ -90,16 +91,27 @@
   border: 1px solid #CCC;
 }
 
-#calendar-day-view #time-td {
+#calendar-day-view .time-td {
   width: 50px;
   text-align: center;
+}
+
+#calendar-day-view tr {
+  height: 60px;
 }
 
 div .event {
   position: absolute;
   width: 300px;
   left: 80px;
-  border: 1px solid #CCC;
-  background-color: #4C4C4C;
   color: #FFF;
+  background-color: #4C4C4C;
+  overflow: hidden;
+  border: 1px solid #CCC;
+  text-align: center;
+}
+
+.event p {
+  line-height: 0.3;
+  margin-top: 9px;
 }

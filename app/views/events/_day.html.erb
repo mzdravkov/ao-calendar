@@ -1,18 +1,28 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  var overlaps = $(".event").overlaps();
+  for(var i = 1; i < overlaps.size(); i+=2) {
+    overlaps[i].style.left = "350px"; 
+  }
+});
+</script>
+
 <table id="calendar-day-view" border='1'>
   <% 24.times do |i| %>
     <tr>
-      <td id='time-td'><%= i %>:00</td>
-      <td id='event-td'></td>
+      <td class='time-td'><%= i %>:00</td>
+      <td class='event-td'></td>
     </tr>
   <% end  %>
-
-  <% for event in @events do %>
-    <% top = (event.from.strftime("%H").to_i * 60) + event.from.strftime("%M").to_i + 88 %>
-    <% height = ((event.to - event.from)/1.hour) * 60 %>
-    <% height = 30 if height == 0 %>
-    <%= content_tag :div, class: "event", style: "top:"+top.to_s+"px; height:"+height.to_s+"px;" do -%>
-      <p><%= event.title %></p>
-    <% end -%>
-  <% end %>
 </table>
-
+<% for event in @events do %>
+  <% top = (event.from.strftime("%H").to_i * 60) + event.from.strftime("%M").to_i + 88 %>
+  <% height = (((event.to - event.from)/1.hour).round) * 60 %>
+  <% height = 35 if height == 0 %>
+  <%= content_tag :div, class: "event", style: "top:"+top.to_s+"px; height:"+height.to_s+"px;" do -%>
+    <div style="clear:both"></div>
+    <p><%= event.title %></p>
+    <p><%= event.from.to_datetime.strftime("%H:%M") + " - " + event.to.to_datetime.strftime("%H:%M") %></p>
+    <div style="clear:both"></div>
+  <% end -%>
+<% end %>
