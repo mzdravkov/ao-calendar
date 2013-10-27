@@ -7,6 +7,7 @@
   <p>
     From <%= @event.from.strftime("%H:%M %d/%m/%y") %> to <%= @event.to.strftime("%H:%M %d/%m/%y") %>
   </p>
+  <%= button_to 'Delete', {action: :destroy, id: @event.id}, {class: 'btn btn-danger', method: :delete} if @event.eventable.is_a? User %>
 </div>
 <% @tasks.each do |task| %>
   <div class="well">

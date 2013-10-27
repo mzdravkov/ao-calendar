@@ -1,11 +1,13 @@
-<%= button_to 'Join group', action: :join unless can_see_group?(@group)%>
+<%= button_to 'Join group', {action: :join}, {class: 'btn btn-large btn-block btn-primary'} unless can_see_group?(@group) %>
 <% if can_see_group? @group %>
   <% @group.polls.each do |poll| %>
     <% unless current_user.voted_on? poll %>
-      <%= poll.title %>
-      <div class="btn-group">
-        <%= button_to 'Accept', {controller: 'polls', action: 'vote_for', id: poll.id}, {class: "btn"} %>
-        <%= button_to 'Refuse', {controller: 'polls', action: 'vote_against', id: poll.id}, {class: "btn"} %>
+      <div class="well poll">
+        <h4><%= poll.title %></h4>
+        <div class="poll_controll">
+        <%= button_to 'Accept', {controller: 'polls', action: 'vote_for', id: poll.id}, {class: "btn btn-success"} %>
+        <%= button_to 'Refuse', {controller: 'polls', action: 'vote_against', id: poll.id}, {class: "btn btn-danger"} %>
+        </div>
       </div>
     <% end %>
   <% end %>

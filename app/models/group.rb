@@ -14,4 +14,12 @@ class Group < ActiveRecord::Base
   def remove_event event
     events.delete event.id
   end
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 end

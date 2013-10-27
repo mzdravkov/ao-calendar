@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
   end
 
   def index
+    @groups = Group.search(params[:search])
   end
 
   def show
