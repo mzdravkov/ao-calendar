@@ -23,7 +23,7 @@
     <% current_user.groups.each do |group| %>
       <div class="control-group">
         <%= label_tag "#{group.name}_group", nil, class: 'control-label' %>
-        <%= check_box_tag "#{group.id}" %>
+        <%= check_box_tag "#{group.name}_group" %>
       </div>
     <% end %><br/>
 
