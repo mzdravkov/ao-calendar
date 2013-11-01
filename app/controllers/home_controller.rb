@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
 
   def index
-    @events = all_user_events
     if user_signed_in?
+      @events = Event.all_user_events current_user
       if params[:view] && params[:day]
         @events = @events.reject! {|event| event.from.to_datetime.strftime("%Y%m%-d") != params[:day]}
       end
@@ -14,13 +14,4 @@ class HomeController < ApplicationController
       format.js
     end
   end
-
-  private
-    def all_user_events
-        events = current_user.events
-        current_user.groups.each do |group|
-          events += group.events
-        end
-        events
-    end
 end

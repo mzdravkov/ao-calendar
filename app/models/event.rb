@@ -19,6 +19,15 @@ class Event < ActiveRecord::Base
     recursive_repeat repeats, step, from
   end
 
+  def self.all_user_events user
+    events = user.events
+    user.groups.each do |group|
+      events += group.events
+    end
+    events
+  end
+
+
   private
 
   def recursive_repeat lrepeats, lstep, ldate
