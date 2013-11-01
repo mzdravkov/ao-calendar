@@ -1,14 +1,14 @@
 class HomeController < ApplicationController
 
   def index
+    @events = all_user_events
     if user_signed_in?
       if params[:view] && params[:day]
-        @events = events_for params[:day]
-      else
-        @events = all_user_events
+        @events = @events.reject! {|event| event.from.to_datetime.strftime("%Y%m%-d") != params[:day]}
       end
       @date = params[:month] ? Date.parse(params[:month]) : Date.today
     end
+
     respond_to do |format|
       format.html
       format.js
@@ -17,14 +17,10 @@ class HomeController < ApplicationController
 
   private
     def all_user_events
-        @events = current_user.events
+        events = current_user.events
         current_user.groups.each do |group|
-          @events += group.events
+          events += group.events
         end
-        @events
-    end
-
-    def events_for day
-      @events = all_user_events.map {|event| event if event.from.to_datetime.strftime("%Y %m %e") == day}
+        events
     end
 end
